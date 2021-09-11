@@ -11,7 +11,7 @@ RUN apk add --no-cache \
         busybox-extras \
         dante-server \
         openvpn \
-        bash\
+        bash \
         tinyproxy
 
 RUN mkdir -p /data/vpn
