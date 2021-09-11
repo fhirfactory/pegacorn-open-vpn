@@ -6,3 +6,7 @@ cp -rf /run/desktop/mnt/host/e/dev/aether-host-files/common/* /data/
 docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-open-vpn:1.0.0-snapshot .
 
 helm upgrade pegacorn-open-vpn-site-a --install --namespace site-a --set serviceName=pegacorn-open-vpn,imagePullPolicy=Never,basePort=32250,hostPathVPNConfig=/data/vpn,imageTag=1.0.0-snapshot,numOfPods=1 helm
+
+# Confirm tunnel connection is established
+telnet 172.30.123.161 50000
+telnet 172.30.123.161 50010
