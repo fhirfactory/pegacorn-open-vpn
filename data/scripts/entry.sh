@@ -2,6 +2,8 @@
 # shellcheck shell=ash
 # shellcheck disable=SC2169 # making up for lack of ash support
 
+set -e
+
 cleanup() {
     # When you run `docker stop` or any equivalent, a SIGTERM signal is sent to PID 1.
     # A process running as PID 1 inside a container is treated specially by Linux:

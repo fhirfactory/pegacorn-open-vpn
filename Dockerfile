@@ -6,6 +6,7 @@ FROM fhirfactory/pegacorn-base-openvpn:1.0.0
 RUN mkdir -p /data/vpn
 
 COPY data/ /data
+COPY healthy /tmp/healthy
 
 EXPOSE 1080 8080
 

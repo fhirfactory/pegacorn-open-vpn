@@ -67,6 +67,13 @@ spec:
           value: {{ .Values.hostPathVPNConfig }}
         image: {{ .Values.dockerRepo }}pegacorn-open-vpn:{{ .Values.imageTag }}            
         imagePullPolicy: {{ .Values.imagePullPolicy | default "IfNotPresent" }}
+        readinessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 10
+          periodSeconds: 5
         name: open-vpn-client
         ports:
         - containerPort: 8080
@@ -81,16 +88,18 @@ spec:
           capabilities:
             add:
               - NET_ADMIN
+        readinessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/healthy
+          initialDelaySeconds: 10
+          periodSeconds: 5
         volumeMounts:
         - name: vpn-config
           mountPath: /data/vpn
-        - name: tunnel
-          mountPath: /dev/net/tun
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | default 30 }}
       volumes:
       - name: vpn-config
         hostPath:
           path: {{ .Values.hostPathVPNConfig }}
-      - name: tunnel
-        hostPath:
-          path: /dev/net/tun
