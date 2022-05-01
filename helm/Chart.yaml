@@ -1,0 +1,5 @@
+---
+name: aether-openvpn-client
+version: 1.0.0-SNAPSHOT
+description: Open VPN client
+icon: img/icons/camel.svg
